@@ -7,14 +7,14 @@ from src.data_loader import upload_dataset
 from src.data_boot import boot_file
 from src.executor_query import execute_queries, ress
 from src.quer import querSQl, sqlite_quer, pandas_quer
-
-
-def main():
+def start():
     upload_dataset()
-
     fp = boot_file()
     if 'Airport_fee' in fp.columns:
         fp = fp.drop(columns=['Airport_fee'])
+
+def main():
+    start()
 
     eng = create_engine('postgresql://postsql:postsql@localhost:5432/postsql')
     connect = psycopg2.connect(
